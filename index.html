@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Support Vector Machines</title>
+      <!-- See https://daneden.github.io/animate.css/ for animation types -->
+      <!-- Just add the 'animated' class as well as the specific animation class -->
+      <link rel="stylesheet" type="text/css" href="css/animate.css">
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- This is template for http://remarkjs.com/ by Ole Petter Bang -->
+    <!-- CSS modifcations by J. M. Lilly-->
+
+      <style type="text/css">
+       body { font-family: 'Georgia';letter-spacing:0.025em;}
+       h1, h2, h3 {
+           font-family: 'Georgia';
+           font-weight: normal;
+       }
+
+       /* TODO: Caixa block com diferentes cores */
+       /* TODO: Colunas de tamanhos variados */
+       /* TODO: Página título parecida com a do GTEL */
+       /* TODO: Diminuir o padding do remark-slide-content -> Espaço branco lateral */
+
+       /* Colors in GTEL Theme */
+       /* \definecolor{LightBlueGTEL}{RGB}{0,128,184}
+          \definecolor{LightGreenGTEL}{RGB}{0,154,121}
+          \definecolor{DarkBlueGTEL}{RGB}{37,63,77}
+          \definecolor{RedGTEL}{rgb}{0.75,0,0.25} % purple
+          \colorlet{WhiteGTEL}{white}
+          \colorlet{GrayGTEL}{gray!20}
+          \colorlet{BlackGTEL}{black}
+        */
+
+
+
+       /* This class is created by remark and we actually appending some content
+          to it */
+       .remark-slide-content {
+           padding: 1em 3em 1em 3em;
+           /* By using relative position we are able to use absolute position in its chindren */
+           position: relative;
+       }
+
+       .remark-slide-content h1 { font-size: 2.8rem; color:#606060;font-weight: bold;letter-spacing:0.05em;margin-top:0em;}
+       .remark-slide-content h2 { font-size: 2rem;color:#606060;font-weight: bold;letter-spacing:0.05em;margin-top:0em}
+       .remark-slide-content  h3 { font-size: 1.8rem;color:#606060;font-weight: bold;letter-spacing:0.05em;margin-top:0em}
+       .remark-slide-content p,ol,ul { font-size: 1.5rem; }
+       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+       .remark-fading { z-index: 9; }
+
+       /* Thanks to http://www.partage-it.com/animez-vos-presentations-remark-js/  (in French) */
+       .remark-slide-container {transition: opacity 0.5s ease-out;opacity: 0;}
+       .remark-visible {transition: opacity 0.5s ease-out;opacity: 1;}
+
+       blockquote {
+           /*          font-size: 150%; */
+           background-color: rgb(200,200,200);
+           padding: 1rem;
+           /* margin-top: 1em;
+              margin-bottom: 1em; */
+           padding-top: 0.5rem;
+           padding-bottom: 0.5rem;
+           border-radius: 0.5rem;
+       }
+       blockquote > p {
+           margin-top: 5px;
+           margin-bottom: 5px;
+       }
+
+
+       /* Remember to add content in the .frametitle with a newline to make it a div */
+       .frametitle {
+           background-color: #d0d0d0;
+           position: relative;
+           top: 0px;
+           margin-top: -1em;
+           margin-left: -3em;
+           margin-right: -3em;
+           padding-left: 1em;
+       }
+
+       .remark-slide-content .frametitle h1 {
+           color: rgb(0,128,184);
+           margin-bottom: 0em; /* You can add subtitle below the frame title as h2*/
+       }
+
+       .remark-slide-content .frametitle h2 {
+           color: rgb(0,128,184);
+       }
+       /* Two-column layout */
+       /* .left-column {
+          width: 50%;
+          float: left;
+          }
+          .right-column {
+          width: 49%;
+          float: right;
+          padding-top: 0em;
+          margin-top: 0em;
+          text-align: left;
+          } */
+       .footnote {
+           position:absolute;
+           bottom: 1em;
+           left: 5%;
+           font-size: 0.7em;
+       }
+
+       .inverse {
+           background: #272822;
+           color: #f3f3f3;
+           text-shadow: 0 0 20px #333;
+       }
+
+       .inverse p {
+           font-size: 1.5em;
+           line-height: 1.5em;
+       }
+
+       .inverse h1, .inverse h2 {
+           color: #f3f3f3;
+       }
+
+       .extra-top-bottom-margin {
+           margin-top: 4em !important;
+           margin-bottom: 4em !important;
+       }
+
+       /* Some special classes */
+       .title {font-size: 3.3em; color:#606060;font-weight:bold;letter-spacing:0.05em;
+           text-shadow: 5px 5px #aaaaaa;
+           /* background-color: rgb(0,128,184); */
+       }
+       .subtitle {font-size: 1.4em}
+       .author {font-size: 1.4em; color:#606060;font-weight:bold;letter-spacing:0.02em}
+       .coauthor {font-size: 1.0em; color:#606060;font-weight:bold;letter-spacing:0.02em}
+       .institution {font-size: 1.0em;}
+       .date {font-size: 1.0em;font-style: italic}
+       /* .titlepagebody {
+          background-color: rgb(220,220,220);
+          height: 300px;
+          margin-top: auto;
+          margin-bottom: auto;
+          padding-top: 10px;
+          } */
+
+       .cite {font-size: 0.8em; color:#33AA99;font-style: italic}
+       .strike {color:salmon;text-decoration:line-through}
+
+       /*Set color scheme for links.*/
+       a {text-decoration: none; color: #666666;text-align:center; width: 24%}
+       /*Setting link properties is particular, do not change order below*/
+       a:visited {color:#666666}
+       a:hover {color:#33AA99}
+       a:active, a#active {color:#FF9700;}
+
+       /* Image scale to its container */
+       img { max-width: 100%; }
+
+       .alert {
+           color: #ff0000;
+       }
+
+       /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          xxxxxxxxxx Styles only used in this presentation xxxxxxxxxxxxxxxxxxxxxxx
+          xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+       div.box, code {
+           -webkit-border-radius: 4px;
+           -moz-border-radius: 4px;
+           border-radius: 4px;
+           padding: 0 10px;
+           /* border: 1px solid #ccc; */
+           margin-top: 15px;  /* Set as the amount the label is shifted up */
+           /* font-size: 0.9em; */
+       }
+       /* The box content must be either a ul or a p */
+       div.box p, div.box ul {
+           position: relative;
+           top: -1em;
+       }
+
+       .label {
+           -webkit-border-radius: 4px;
+           -moz-border-radius: 4px;
+           border-radius: 4px;
+           padding: 3px 5px 4px;
+           color: white;
+           font-weight: bold;
+           text-transform: uppercase;
+           white-space: nowrap;
+           font-size: 0.75em;
+           left: 10px;
+           position: relative;
+           top: -15px;
+       }
+
+       .angry {
+           background-color: #FFD7D5;
+           border-color: #C43C35;
+       }
+       .happy {
+           background-color: #C0E0C0;
+           border-color: #46a546;
+       }
+       .moody {
+           background-color: #FFECD1;
+           border-color: #F89406;
+       }
+       .box.moody .label {
+           background-color: #F89406;
+       }
+       .box.happy .label {
+           background-color: #46A546;
+       }
+       .box.angry .label {
+           background-color: #C43C35;
+       }
+
+
+       .figureannotation {
+           background-color: rgba(255,255,255,0.8);
+           position: fixed;
+           font-size:70%;
+           padding: 3px;
+       }
+
+       .sideannotation {
+           width: 13em;
+           right: 10%;
+       }
+
+       /* Put anything that should have a caption inside a parent container with this class*/
+       .captionbox {
+           display: inline-block;
+           position: relative;
+           /* padding: 8px 8px 8px 8px;  */
+           /* background-color: #eeeeee; */
+       }
+
+       /* For some reason the image is being inserted inside a paragraph, but we don't want the margin from it */
+       .captionbox > p {
+           margin-top: 0;
+           margin-bottom: 0;
+       }
+
+       .captionbox img {
+           height: 380px; /* All images we add with a caption will have this fixed width */
+           /* margin-left: auto; */ /* Both margin as auto will center the image */
+           /* margin-right: auto; */
+           display: block;
+           margin-right: 16rem;  /* Shift the image left to leave some space for caption */
+       }
+
+       /* Add this class to the caption text that you add inside the .captionbox */
+       .caption {
+           position: absolute;
+           display: inline-block;
+           font-size:90%;
+           width: 14rem;  /* We left 15rem as space for caption. We set its width to 13... */
+           right: 1rem;   /* and we shift the caption to the left by 1rem*/
+           top: 45%;  /* This combined with translateY will vertically center the caption */
+           transform: translateY(-50%);
+           text-align: center;
+       }
+
+      </style>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+  </head>
+  <body>
+      <!-- <textarea id="source">
+           </textarea> -->
+    <!-- This is the link to the local copy of Remark -->
+    <script src="javascript/remark-latest.min.js" type="text/javascript"></script>
+    <!--<script src="./javascript/remark-latest.min.js" type="text/javascript"></script>-->
+    <!-- See discussion at https://github.com/gnab/remark/issues/222-->
+    <!-- You could alternately use the libraries from remote location -->
+    <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript"></script>-->
+
+    <script type="text/javascript">
+     var slideshow = remark.create({
+         sourceUrl: 'presentation.md',
+         navigation: {
+             click: false
+         },
+         properties: {
+             class: "center, middle"
+         },
+         ratio: '16:9',
+         countIncrementalSlides: false
+     });
+    </script>
+
+    <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         tex2jax: {
+             inlineMath: [['$','$'], ['\\(','\\)']],
+             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+         },
+         TeX: {
+             Macros: {
+                 vtX: "\\mathbf{x}",
+                 mtX: "\\mathbf{X}",
+                 stS: "\\mathcal{S}"
+             }
+         }
+     });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+    <script src="d3draws/draw.js"></script>
+    <script>
+     var intuition1 = new IntuitionPlot("#intuition_plot");
+     var intuition2 = new IntuitionPlot("#intuition_plot2");
+     intuition2.add_first_separating_line();
+
+     var intuition3 = new IntuitionPlot("#intuition_plot3");
+     intuition3.add_first_separating_line();
+     intuition3.add_second_separating_line();
+
+     var intuition4 = new IntuitionPlot("#intuition_plot4");
+     intuition4.add_first_separating_line();
+     intuition4.add_second_separating_line();
+     intuition4.add_third_separating_line();
+
+
+
+     /* slideshow.on('showSlide', function (slide) {
+      *     // Slide is the slide being navigated to
+      *     console.log("Slide moved to: ");
+      *     console.log(slide);
+      * }); */
+
+     /* https://github.com/gnab/remark/wiki/Configuration */
+     /*
+      *      slideshow.on('showSlide', function (slide) {
+      *          // Slide is the slide being navigated to
+      *      });
+      *
+      *      slideshow.on('hideSlide', function (slide) {
+      *          // Slide is the slide being navigated away from
+      *      }); */
+
+
+    </script>
+
+    <!-- If you want to run your presentation offline, you need to download the MathJax -->
+    <!-- libraries, then uncomment the line below and comment out the one above.-->
+    <!--<script "text/javascript" src="../../javascript/MathJax/MathJax.js?config=TeX-AMS_HTML,local/local"></script>-->
+</body>
+</html>
