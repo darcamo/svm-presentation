@@ -53,41 +53,21 @@
        .remark-slide-container {transition: opacity 0.5s ease-out;opacity: 0;}
        .remark-visible {transition: opacity 0.5s ease-out;opacity: 1;}
 
-       blockquote {
-           /*          font-size: 150%; */
-           background-color: rgb(200,200,200);
-           padding: 1rem;
-           /* margin-top: 1em;
-              margin-bottom: 1em; */
-           padding-top: 0.5rem;
-           padding-bottom: 0.5rem;
-           border-radius: 0.5rem;
-       }
-       blockquote > p {
-           margin-top: 5px;
-           margin-bottom: 5px;
-       }
 
-
-       /* Remember to add content in the .frametitle with a newline to make it a div */
-       .frametitle {
+       .remark-slide-content:not(.inverse) h1:first-child, .remark-slide-content:not(.inverse) h1:first-child+h2 {
+           color: rgb(0,128,184);
            background-color: #d0d0d0;
+           margin-left: -60px;
+           margin-right: -60px;
+           padding-left: 2rem;
+       }
+
+       .remark-slide-content h1:first-child {
+           margin-bottom: 0em;
            position: relative;
-           top: 0px;
-           margin-top: -1em;
-           margin-left: -3em;
-           margin-right: -3em;
-           padding-left: 1em;
+           margin-top: -20px;
        }
 
-       .remark-slide-content .frametitle h1 {
-           color: rgb(0,128,184);
-           margin-bottom: 0em; /* You can add subtitle below the frame title as h2*/
-       }
-
-       .remark-slide-content .frametitle h2 {
-           color: rgb(0,128,184);
-       }
        /* Two-column layout */
        /* .left-column {
           width: 50%;

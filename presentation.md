@@ -39,9 +39,7 @@ date: 2018-09-24
 ---
 layout: true
 
-.frametitle[
 # Intuition
-]
 
 - Suppose we have a population of 50%-50% males and females
 - We want to identify whether an individual is a Male or a Female
@@ -66,9 +64,7 @@ layout: true
 ---
 layout: false
 
-.frametitle[
 # Intuition
-]
 
 - We call the samples closest to the frontier the "support vectors"
 
@@ -93,9 +89,7 @@ layout: false
 </div>
 ---
 
-.frametitle[
 # Maximal Margin Classifier
-]
 
 
 - Elegant and simple
@@ -118,9 +112,7 @@ layout: false
 ---
 layout: true
 
-.frametitle[
 # What is an Hyperplane
-]
 
 ---
 
@@ -160,10 +152,8 @@ $$\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_p X_p = 0 \tag{1}$$
 ---
 layout: true
 
-.frametitle[
 # Classification
 ## Using a Separating Hyperplane
-]
 
 ---
 
@@ -234,9 +224,7 @@ training observations **perfectly** according to their class labels
 ---
 layout: false
 
-.frametitle[
 # The Maximal Margin Classifier
-]
 
 - A natural choice for a hyperplane is the **maximal margin hyperplane**
   - The hyperplane that is farthest from the training observations
@@ -272,9 +260,7 @@ A classifier with a large margin on the training data will also have a large mar
 
 ---
 layout: true
-.frametitle[
 # The Maximal Margin Classifier
-]
 
 - In the figure we see that the trainning observations are equidistant from the
   maximal margin hyperplane and lie along the dashed line
@@ -312,10 +298,10 @@ These three observations are known as the "support vectors"]]
 
 ---
 layout: false
-.frametitle[
+
 # The Maximal Margin Classifier
 ## Construction
-]
+
 
 $$\begin{align}
 & \underset{\beta\_0, \beta\_1, \ldots, \beta\_p, M}{\text{maximize}} & & M \tag{2a} \\\\
@@ -342,9 +328,7 @@ the hyperplane, **provided that M is positive**
 
 ---
 
-.frametitle[
 # The Non-separable Case
-]
 
 - In many cases a separating hyperplane does not exist
 
@@ -378,10 +362,8 @@ Generalize the maximal margin classifier to the non-separable case ➡ Find a hy
 ---
 layout: true
 
-.frametitle[
 # Support Vector Classifier
 ## Motivation
-]
 
 ---
 
@@ -424,10 +406,10 @@ layout: true
 
 ---
 layout: true
-.frametitle[
+
 # Support Vector Classifier
 ## Motivation
-]
+
 
 - 🤔, It does not look that nice anymore ➡ the margin is very thin
 
@@ -472,10 +454,9 @@ order to do a better job in classifying the remaining observations
 
 ---
 layout: false
-.frametitle[
+
 # Support Vector Classifier
 ## Overview
-]
 
 - The support vector classifier allow some observations to be on the incorrect
   side of the margin
@@ -497,10 +478,8 @@ layout: false
 ---
 
 layout: true
-.frametitle[
 # Support Vector Classifier
 ## Example
-]
 
 ---
 
@@ -566,10 +545,8 @@ side of the margin.
 ---
 layout: true
 
-.frametitle[
 # Support Vector Classifier
 ## Details of the Support Vector Classifier
-]
 
 ---
 
@@ -609,10 +586,8 @@ relative to the hyperplane and relative to the margin
 
 layout: true
 
-.frametitle[
 # Support Vector Classifier
 ## Details of the Support Vector Classifier
-]
 
 ---
 
@@ -669,10 +644,8 @@ cross-validation**
 
 ---
 layout: false
-.frametitle[
 # Support Vector Classifier
 ## Interesting properties of $(\text{3a})$-$(\text{3d})$
-]
 
 - Only observations that either lie on the margin or that violate the margin
   will affect the hyperplane
@@ -692,10 +665,8 @@ layout: false
 ---
 layout: true
 
-.frametitle[
 # Support Vector Classifier
 ## Effect of varying C
-]
 
 - As we decrease the value of $C$ the margin narrows and we have fewer support vectors
 
@@ -774,9 +745,7 @@ from the hyperplane
 ---
 layout: true
 
-.frametitle[
 # Non-linear Decision Boundaries
-]
 
 ---
 
@@ -821,8 +790,7 @@ template: inverse
 ---
 layout: true
 
-.frametitle[
-# Support Vector Machines]
+# Support Vector Machines
 
 ---
 
@@ -896,9 +864,8 @@ points $x_i$
 
 layout: true
 
-.frametitle[
 # Support Vector Machines
-## Other types of kernel]
+## Other types of kernel
 
 ---
 
@@ -981,9 +948,8 @@ resulting classifier is known as a **support vector machine**
 
 ---
 layout: false
-.frametitle[
 # Support Vector Machines
-## Why use kernels]
+## Why use kernels
 
 
 - What is the advantage of using a kernel rather then enlarging the feature
@@ -1016,9 +982,7 @@ But SVM is still limited two separating between two classes, right?
 
 
 ---
-.frametitle[
 # SVMs with $K>2$ classes
-]
 
 - The concept of separating hyperplanes does not lend itself naturally to more
   than two classes
@@ -1051,9 +1015,7 @@ template: inverse
 
 ---
 
-.frametitle[
 # Regression with SVMs
-]
 
 .extra-top-bottom-margin[
 ### Not on this presentation
