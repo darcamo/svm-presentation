@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
+
+        <!-- Template used-->
+        <!-- http://www.jmlilly.net/liminal/talks/template.html#1 -->
+
       <title>Support Vector Machines</title>
       <!-- See https://daneden.github.io/animate.css/ for animation types -->
       <!-- Just add the 'animated' class as well as the specific animation class -->
@@ -196,8 +200,11 @@
        .box.angry .label {
            background-color: #C43C35;
        }
+      </style>
 
 
+      <!-- Style specific to this presentation -->
+      <style>
        .figureannotation {
            background-color: rgba(255,255,255,0.8);
            position: fixed;
@@ -243,8 +250,8 @@
            transform: translateY(-50%);
            text-align: center;
        }
-
       </style>
+
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
   </head>
   <body>
@@ -258,6 +265,22 @@
     <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript"></script>-->
 
     <script type="text/javascript">
+     // Macro to generate the colored box -> It receives 3 arguments, the classes (everything except box separated by spaces), the box label, the box content.
+     function generate_box_code(classes, label, content) {
+         var box_code = "<div class=\"box CLASSES\"><span class=\"label\">LABEL</span><p>CONTENT</p></div>";
+         box_code = box_code.replace("CLASSES", classes);
+         box_code = box_code.replace("LABEL", label);
+
+         box_code = box_code.replace("CONTENT", remark.convert(content));
+         return box_code;
+     }
+
+     // See https://github.com/gnab/remark/issues/72#issuecomment-62225566
+     remark.macros['box'] = function () {
+         var label = arguments[1] === undefined ? "Note" : arguments[1];
+         return generate_box_code(arguments[0], label, this);
+     };
+
      var slideshow = remark.create({
          sourceUrl: 'presentation.md',
          navigation: {
@@ -266,7 +289,7 @@
          properties: {
              class: "center, middle"
          },
-         ratio: '16:9',
+         //ratio: '16:9',
          countIncrementalSlides: false
      });
     </script>

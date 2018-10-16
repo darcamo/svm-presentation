@@ -35,7 +35,6 @@ date: 2018-09-24
 
 .footnote[Created with [{Remark.js}](http://remarkjs.com/) using [{Markdown}](https://daringfireball.net/projects/markdown/) +  [{MathJax}](https://www.mathjax.org/)]
 
-
 ---
 layout: true
 
@@ -83,10 +82,8 @@ layout: false
 - **Natural approach**: put the frontier as far away as possible from any support vector
 --
 
-<div class="moody box extra-top-bottom-margin">
-<span class="label">Note:</span>
-<p>This is the <strong>Maximal Margin Classifier</strong></p>
-</div>
+![:box moody extra-top-bottom-margin](This is the **Maximal Margin Classifier**)
+
 ---
 
 # Maximal Margin Classifier
@@ -103,11 +100,7 @@ layout: false
 
 --
 
-<div class="moody box extra-top-bottom-margin">
-<span class="label">Note:</span>
-<p>In a p-dimensional space, a hyperplane is a flat affine subspace of dimension p − 1</p>
-</div>
-
+![:box moody extra-top-bottom-margin](In a $p$-dimensional space, a hyperplane is a flat affine subspace of dimension $p − 1$)
 
 ---
 layout: true
@@ -129,11 +122,11 @@ $$\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_p X_p = 0 \tag{1}$$
 --
 
 
+<!-- Note that you cannot use the :box macro here because of the parentheses -->
 <div class="moody box extra-top-bottom-margin">
 <span class="label">Note:</span>
 <p>If $X = (X_1, X_2, \ldots, X_p)^T$ and $(1)$ holds, then $X$ is a point on the hyperplane</p>
 </div>
-
 
 ---
 
@@ -239,10 +232,7 @@ layout: false
   - This distance it known as the **margin**
 --
 
-<div class="moody box">
-<span class="label">Note:</span>
-<p>The maximal margin hyperplane is the separating hyperplane for which the margin is largest</p>
-</div>
+![:box moody](The maximal margin hyperplane is the separating hyperplane for which the margin is largest)
 
 
 --
@@ -470,10 +460,7 @@ layout: false
 --
 
 
-<div class="angry box extra-top-bottom-margin">
-<span class="label">Note:</span>
-<p>When there is no separating hyperplane, such a situation is inevitable</p>
-</div>
+![:box angry extra-top-bottom-margin](When there is no separating hyperplane, such a situation is inevitable)
 
 ---
 
@@ -656,11 +643,7 @@ layout: false
 --
 
 
-<div class="moody box extra-top-bottom-margin">
-<span class="label">Note:</span>
-<p>When the tuning parameter $C$ is large the margin is wide and many observations violate the margin ➡ there are many support vectors</p>
-</div>
-
+![:box moody extra-top-bottom-margin](When the tuning parameter $C$ is large the margin is wide and many observations violate the margin ➡ there are many support vectors)
 
 ---
 layout: true
@@ -770,10 +753,7 @@ layout: true
 - Other functions of the predictors could be considered rather than polynomials
 
 
-<div class="moody box">
-<span class="label">Note:</span>
-<p>There are many possible ways to enlarge the feature space<br>Is there a better way?</p>
-</div>
+![:box moody](There are many possible ways to enlarge the feature space<br>Is there a better way?)
 
 ---
 
@@ -799,10 +779,7 @@ layout: true
 --
 
 
-<div class="happy box extra-top-bottom-margin">
-<span class="label">Note:</span>
-<p>But first we need to rewrite the optimization problem in a more general way</p>
-</div>
+![:box happy extra-top-bottom-margin](But first we need to rewrite the optimization problem in a more general way)
 
 ---
 
@@ -833,11 +810,11 @@ points $x_i$
   which typically involves far fewer terms than $(4)$.
 --
 
+<!-- Note that you cannot use the :box macro here because of the parentheses -->
 <div class="happy box">
-<span class="label">Note:</span>
+<span class="label">Note</span>
 <p>To summarize, in representing the linear classifier $f(x)$, and in computing its coefficients, all we need are inner products</p>
 </div>
-
 
 ---
 
@@ -848,10 +825,7 @@ points $x_i$
 --
 
 
-<div class="moody box">
-<span class="label">Note:</span>
-<p>A kernel is a function that quantifies the similarity of two observations</p>
-</div>
+![:box moody](A kernel is a function that quantifies the similarity of two observations)
 
 --
 
@@ -912,7 +886,7 @@ $$K(x\_i, x\_i') = \exp \left( -\gamma \sum\_{j=1}^p (x\_{ij}-x'\_{ij})^2 \right
 
 --
 
-
+<!-- Note that you cannot use the :box macro here because of the parentheses -->
 &nbsp;
 <div class="moody box">
 <span class="label">Note:</span>
@@ -962,15 +936,9 @@ layout: false
 --
 
 
-<div class="angry box extra-top-bottom-margin">
-<span class="label">Note:</span>
-<p>In many applications of SVMs, the enlarged feature space is so large that computations are intractable
-<ul>
-<li>The radial kernel has an implicit infinite-dimensional feature space!</li>
-</ul>
+![:box angry extra-top-bottom-margin](In many applications of SVMs, the enlarged feature space is so large that computations are intractable
 
-</p>
-</div>
+- The radial kernel has an implicit infinite-dimensional feature space!)
 
 ---
 template: inverse
@@ -1021,15 +989,13 @@ template: inverse
 ### Not on this presentation
 ]
 
-<div class="happy box">
-<span class="label">More Info:</span>
-<p>See
-<br><a href="https://alex.smola.org/papers/2003/SmoSch03b.pdf">https://alex.smola.org/papers/2003/SmoSch03b.pdf</a>
-<br><a href="http://kernelsvm.tripod.com/">http://kernelsvm.tripod.com/</a>
-<br><a href="https://en.wikipedia.org/wiki/Support_vector_machine?oldformat=true">https://en.wikipedia.org/wiki/Support_vector_machine?oldformat=true</a>
-<br><a href="https://sadanand-singh.github.io/posts/svmmodels/">https://sadanand-singh.github.io/posts/svmmodels/</a>
-</p>
-</div>
+
+![:box happy, More Info](See<br>
+https://alex.smola.org/papers/2003/SmoSch03b.pdf<br>
+http://kernelsvm.tripod.com/<br>
+https://en.wikipedia.org/wiki/Support_vector_machine<br>
+https://sadanand-singh.github.io/posts/svmmodels
+)
 
 ---
 background-image: url(figs/the_end.png)
